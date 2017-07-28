@@ -1,3 +1,4 @@
+#! /usr/bin/env python3
 import re
 from cook_book import  *
 from parse_html_to_img import *
