@@ -1,32 +1,27 @@
-# 导入模块
-from wxpy import *
-from cook_book import *
 import re
 from cook_book import  *
 from parse_html_to_img import *
+from wxpy import *
+from meizitu import *
 # 初始化机器人，扫码登陆
-bot = Bot()
+bot = Bot(console_qr=True)
 schoolmate = bot.groups().search('君子藏器于身待时而动')[0]
 boss = bot.friends().search('Dearest')[0]
 
-@bot.register( boss, TEXT)
+@bot.register( [schoolmate, boss], TEXT)
 def cook_book(msg):
-    patten  = re.compile(r'^#[晚餐|晚饭|菜谱]')
-    if  patten.match(msg.text):
+    if re.match(re.compile(r'^#[晚餐|晚饭|菜谱]'), msg.text):
         print(msg.text)
-        path = CookBook.random_path()[0]
-        ParseHtmlToImg.parse(path)
+        ParseHtmlToImg.parse(CookBook.random_path()[0])
         msg.reply_image('cook_book.jpg')
+    elif re.match(re.compile(r'^#[妹子|美女]'), msg.text):
+        print(msg.text)
+        path = MeiZiTu.random_pic_path()
+        print(path)
+        for x in path:
+            schoolmate.send_image(x)
+    elif re.match(re.compile(r'^#[张杰|杰少]'), msg.text):
+        return '傻逼'
     else:
         return
-@bot.register( schoolmate, TEXT)
-def group_cook_book(msg):
-    patten  = re.compile(r'^#[晚餐|晚饭|菜谱]')
-    if  patten.match(msg.text):
-        path = CookBook.random_path()[0]
-        ParseHtmlToImg.parse(path)
-        msg.reply_image('cook_book.jpg')
-    else:
-        return
-
-embed()
+bot.join()
