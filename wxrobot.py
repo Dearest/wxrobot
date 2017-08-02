@@ -23,6 +23,10 @@ def cook_book(msg):
             schoolmate.send_image(x)
     elif re.match(re.compile(r'^#[张杰|杰少]'), msg.text):
         return '傻逼'
+    elif re.match(re.compile(r'^#[曾]'), msg.text):
+        return '国服第一李索斯'
+    elif re.match(re.compile(r'^#[罡]'), msg.text):
+        return '国服第一辅助'
     else:
         return
 bot.join()
