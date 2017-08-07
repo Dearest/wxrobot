@@ -1,4 +1,5 @@
 #! /usr/bin/env python3
+#-*- coding:utf-8 -*-
 import re
 from cook_book import  *
 from parse_html_to_img import *
