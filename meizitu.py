@@ -13,5 +13,5 @@ class MeiZiTu:
 
     @staticmethod
     def random_pic_path():
-        names = list(fliter(lambda x:len(x) > 0, MeiZiTu.pics()))
+        names = list(filter(lambda x:len(x) > 0, MeiZiTu.pics()))
         return names[random.randint(1, len(names))]
