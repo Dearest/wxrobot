@@ -6,7 +6,7 @@ from parse_html_to_img import *
 from wxpy import *
 from meizitu import *
 # 初始化机器人，扫码登陆
-bot = Bot(console_qr=1)
+bot = Bot(console_qr=2)
 schoolmate = bot.groups().search('君子藏器于身待时而动')[0]
 
 @bot.register(schoolmate, TEXT)
